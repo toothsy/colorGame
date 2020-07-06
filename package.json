@@ -1,4 +1,5 @@
 {
+  "homepage":"https://toothsy.github.io/colorGame/",
   "name": "colorgame",
   "version": "1.0.0",
   "description": "An RGB guessing game to help understand the working of rgb color scheme",
@@ -7,7 +8,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "toothsy",
   "license": "ISC",
@@ -38,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^1.7.0"
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "gh-pages": "^3.1.0"
   }
 }

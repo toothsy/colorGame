@@ -100,7 +100,7 @@ resetButton(){
 
 render(){
 	return (<div>
-					<h1 id="header">The Mediocre 
+					<h1 id="header">The  
 						<span id="rgbColor" >
 							<br></br>
 								{this.state.color}
