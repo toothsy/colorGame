@@ -21,7 +21,7 @@ class SquaresGrid extends Component{
 		return `rgb(${r}, ${b}, ${g})`;
 	}
 	customAlert(){
-		swal(<div id="swal">
+		swal(<div id="swal" >
 					A color's RGB value indicates its red,green,
 					<br></br>  
 					and blue intensity. Each intensity value is on a scale of 0 to 255.
@@ -39,6 +39,7 @@ class SquaresGrid extends Component{
 		let array=[];
 				if(!this.props.visited)
 				{
+					console.log("came inside visited if");
 					this.customAlert();
 				}
 
@@ -120,7 +121,7 @@ resetButton(){
 	document.querySelector("button").textContent="NEW COLOR";
 	document.querySelector("#Guess").textContent="";
 	document.querySelector("#header").style.backgroundColor=`#669999`;
-	this.setState({chosenNumber:this.smallRandomFunction(),color:this.randomrbg()});
+	this.setState({chosenNumber:this.smallRandomFunction(),color:this.randomrbg(),visited:true});
 }
 componentDidMount(){
 		this.setState({chosenNumber:this.smallRandomFunction(),
@@ -149,7 +150,7 @@ render(){
 					<SquaresGrid n={6} 
 					chosenNumber= {this.state.chosenNumber} 
 					color={this.state.color}
-					visited={false}
+					visited={this.state.visited}
 					/>
 			</div>
 			);

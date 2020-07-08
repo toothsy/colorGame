@@ -37,12 +37,10 @@ button{
 	font-weight: 800;
 	letter-spacing: 1px;
 	color: #669999;
+	width: 20%;
 	transition: all .2s;
 }
 button:hover{
 	color:white;
 	background:#669999;
-}
-.alert {
-   width:40%;    
 }
