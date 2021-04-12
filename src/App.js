@@ -5,15 +5,12 @@ import swal from '@sweetalert/with-react';
 class SquaresGrid extends Component{
 	constructor(props) {
 	  super(props);
-	  this.state = {n:props.n,chosenNumber:props.chosenNumber,color:props.color};
+	  this.state = {n:props.n,
+					chosenNumber:props.chosenNumber,
+					color:props.color};
 	}
-	randomFunction(){
-		return Math.floor(Math.random() * 256);
-	}
-	smallRandomFunction(){
-	
-	return Math.floor(Math.random()*5);
-	}
+	randomFunction(){return Math.floor(Math.random() * 256);}
+	smallRandomFunction(){return Math.floor(Math.random()*5);}
 	randomrbg(){
 		let r = this.randomFunction();
 		let g = this.randomFunction();
@@ -21,7 +18,7 @@ class SquaresGrid extends Component{
 		return `rgb(${r}, ${b}, ${g})`;
 	}
 	customAlert(){
-		swal(<div id="swal" >
+		swal(<div id="swal" onClick={()=>{this.setState({visited:true})}} >
 					A color's RGB value indicates its red,green,
 					<br></br>  
 					and blue intensity. Each intensity value is on a scale of 0 to 255.
@@ -31,18 +28,12 @@ class SquaresGrid extends Component{
 					Guess?
 			</div>,{buttons:false,closeOnClickOutside:true});
 	}
-	// removeButton(){
-	// 	this.setState({chosenNumber:this.smallRandomFunction(),color:this.randomrbg(),visited:true})
-
-	// }
 	SquareMaker(){
 		let array=[];
-				if(!this.props.visited)
-				{
+				if(!this.props.visited){
 					console.log("came inside visited if");
 					this.customAlert();
 				}
-
 			for(var i=0;i< this.props.n;i++)
 				{
 					let color={ backgroundColor:this.randomrbg()}
@@ -60,24 +51,21 @@ class SquaresGrid extends Component{
 						</div>);
 
 				}
-				return (<React.Fragment >
+				return (<>
 							{array.map((square,index) => 
 								(<React.Fragment key={index}>
 									{square}
 								</React.Fragment>)
 								)}
-						</React.Fragment>
+						</>
 				);	
 
 	}
 	handleClick(e){
-	// console.log(` this is`,this.props);
 	let GuessStripe=document.querySelector("#Guess");
 	let Squares=document.querySelectorAll(".Square");
-	if(Number(e.target.id) === this.props.chosenNumber)
-	{
-		// console.log("target",);
-		GuessStripe.textContent="YA Found me    ";
+	if(Number(e.target.id) === this.props.chosenNumber){
+		GuessStripe.textContent="You Found me !!!!   ";
 		document.querySelector("button").textContent="Play Again?";
 		document.querySelector("#header").style.backgroundColor=`${e.target.style.backgroundColor}`;
 		for(var i=0;i<Squares.length;i++){
@@ -89,27 +77,20 @@ class SquaresGrid extends Component{
 		e.target.style.backgroundColor=`#232323`;
 	}
 }
-render()			
-	{return (
-		<React.Fragment>
 
+render()			
+{return (
+		<>
 			<div className="Container">
 				{this.SquareMaker()}
 			</div>	
-		</React.Fragment>
+		</>
 		);}
 
 }
 class App extends Component {
-randomFunction(){
-
-	return Math.floor(Math.random()*256);
-}
-smallRandomFunction(){
-	
-	return Math.floor(Math.random()*5);
-}
-
+randomFunction(){return Math.floor(Math.random()*256);}
+smallRandomFunction(){return Math.floor(Math.random()*5);}
 randomrbg(){
 		let r = this.randomFunction();
 		let g = this.randomFunction();
@@ -124,8 +105,7 @@ resetButton(){
 	this.setState({chosenNumber:this.smallRandomFunction(),color:this.randomrbg(),visited:true});
 }
 componentDidMount(){
-		this.setState({chosenNumber:this.smallRandomFunction(),
-		color:this.randomrbg()});
+		this.setState({chosenNumber:this.smallRandomFunction(),color:this.randomrbg()});
 }
 render(){
 	return (<div>
@@ -137,7 +117,6 @@ render(){
 						</span> 
 						guessing game
 						</h1>
-
 					<div id="stripe">
 						<button  
 						onClick={this.resetButton.bind(this)}> 
