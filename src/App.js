@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import './App.css';
 import './Square.css';
-import swal from '@sweetalert/with-react';
+import Swal from 'sweetalert2';
 class SquaresGrid extends Component{
 	constructor(props) {
 	  super(props);
@@ -18,15 +18,21 @@ class SquaresGrid extends Component{
 		return `rgb(${r}, ${b}, ${g})`;
 	}
 	customAlert(){
-		swal(<div id="swal" onClick={()=>{this.setState({visited:true})}} >
+		Swal.fire({
+			html: `<div id="swal">
 					A color's RGB value indicates its red,green,
-					<br></br>  
+					<br>
 					and blue intensity. Each intensity value is on a scale of 0 to 255.
-					<br></br>
+					<br>
 					Here, one of the squares has matching rgb value from the header
-					<br></br>
+					<br>
 					Guess?
-			</div>,{buttons:false,closeOnClickOutside:true});
+			</div>`,
+			buttons: false,
+			closeOnClickOutside: true
+		}).then(() => {
+			this.setState({visited: true});
+		});
 	}
 	SquareMaker(){
 		let array=[];
